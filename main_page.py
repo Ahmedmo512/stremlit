@@ -70,7 +70,7 @@ with st.form(key='prediction_form'):
     with col8:
         avg_glucose_level = st.slider("Select Avg Glucose Level", min_value=50, max_value=270, step=1, value=150)
 
-    #submit_button = st.form_submit_button(label='Confirm')
+    submit_button = st.form_submit_button(label='Confirm')
 
 
 df = pd.DataFrame({
@@ -165,11 +165,10 @@ def stream_data():
             time.sleep(0.02)
 
 
-if st.button('gasdgajks'):
-    st.write(stream_data)
 
-'''if submit_button:
-    st.write_stream(stream_data)'''
+
+if submit_button:
+    st.write_stream(stream_data)
     
 # if submit_button:
 #     result = model.predict(df)
