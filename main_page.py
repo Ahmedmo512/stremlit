@@ -120,9 +120,9 @@ else:
 
 text_result=''
 if result ==1:
-    text_result=st.error("⚠️ The patient is at risk of stroke!")
+   text_result= "⚠️ The patient is at risk of stroke!"
 else:
-    text_result=st.success("✅ The patient is not at risk of stroke.")
+    text_result="✅ The patient is not at risk of stroke."
  start_text = f"""
 This is just an expectation
  from a program and not sure 
