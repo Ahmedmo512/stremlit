@@ -138,12 +138,11 @@ end_text="""**WARNING**\n
 
 It’s essential to stay calm and take immediate steps to manage your condition until you can see a doctor. Here are some things you can do:\n
 
-Relax: Try to stay calm and take deep breaths. Stress can increase blood pressure.\n
-
-
-Avoid Stimulants: Stay away from caffeine, nicotine, and alcohol, as these can raise your blood pressure.\n
-
-Stay Hydrated: Drink plenty of water to help maintain healthy blood pressure levels.\n
+Based on the information provided about your health profile:\n
+Please note that this is not a medical diagnosis, but rather a prediction based on health-related data patterns. Nonetheless, it's essential to take precautionary steps immediately until you are seen by a healthcare professional.\n
+Stay Calm: Anxiety and stress can elevate your blood pressure, increasing your stroke risk. Take deep breaths and try to relax\n
+Avoid Stimulants: Refrain from consuming caffeine, tobacco, and alcohol, as these substances can worsen your cardiovascular condition\n
+Eat Smart: Choose foods low in sodium and sugar. Prioritize fruits, vegetables, whole grains, and foods rich in Omega-3. Avoid processed foods.\n
 
 Monitor Your Blood Pressure: If you have a blood pressure monitor, keep track of your readings.\n
 
@@ -236,6 +235,15 @@ def get_fig_heart_disease(data):
     return fig
 
 @st.cache_resource
+def get_fig_BMI(data):
+    fig = px.scatter(data, x='bmi', y='stroke', trendline="ols",
+                     title="Relationship between Bmi and Stroke Risk",
+                     color_discrete_sequence=["#ff7f0e"])
+    fig.update_layout(title=dict(font=dict(size=20, color='blue'), x=0.5, xanchor='center', pad=dict(t=20)),
+                      xaxis_title="BMI", yaxis_title="Stroke Risk Probability")
+    return fig
+
+@st.cache_resource
 def get_fig_hypertension(data):
     fig = px.scatter(data, x='hypertension', y='stroke', trendline="ols",
                      title="Relationship between Hypertension and Stroke Risk",
@@ -267,7 +275,7 @@ def get_fig_age(data):
     plt.tight_layout()
     return fig
 
-risk_factor = st.sidebar.selectbox('Select Risk Factor', ['Hypertension', 'Heart Disease','avg_glucose_level','age'])
+risk_factor = st.sidebar.selectbox('Select Risk Factor', ['avg_glucose_level',"BMI",'Hypertension', 'Heart Disease','age'])
 con = st.sidebar.button('Confirm')
 
 if con:
@@ -277,6 +285,9 @@ if con:
     elif risk_factor == 'Heart Disease':
         st.plotly_chart(get_fig_heart_disease(data), use_container_width=True)
         st.write("The line show a positive correlation. As heart_disease increases, the probability of having a stroke also increases")
+    elif risk_factor == 'BMI':
+        st.plotly_chart(get_fig_BMI(data), use_container_width=True)
+        st.write("The line show a positive correlation. As BMI increases, the probability of having a stroke also increases")
     elif risk_factor =='age':
         st.pyplot(get_fig_age(data))
         st.write("Stroke cases (stroke=1, orange) are more prevalent in middle-aged and older individuals (40+ years), aligning with known medical research that stroke risks increase with age. The density plot further confirms that stroke cases (stroke=1) peak around 50 to 70 years, This suggests that stroke is more common in older populations compared to younger individuals.")
