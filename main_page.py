@@ -106,17 +106,78 @@ df['smoking_status'] = df.apply(transform_smoking_status, axis=1)
 df['hypertension'] = df.apply(transform_hypertension, axis=1)
 df['heart_disease'] = df.apply(transform_heart_disease, axis=1)
 
+result=model.predict(df)
+
+neg_perc=model.predict_proba(df)[0][0]
+pos_perc=model.predict_proba(df)[0][1]
+
+perc=''
+if neg_perc>pos_perc:
+    perc= str(neg_perc*100)+'%'
+else:
+    perc= str(pos_perc*100)+'%'
+
+
+text_result=''
+if result ==1:
+    text_result=st.error("⚠️ The patient is at risk of stroke!")
+else:
+    text_result=st.success("✅ The patient is not at risk of stroke.")
+ start_text = f"""
+This is just an expectation
+ from a program and not sure 
+ please check with your doctor
+but this program expects that
+**{text_result}** with **{perc}** We hope that you are always
+in good health \n\n
+
+"""
+st.write("-"*50)
+end_text="""**WARNING**\n
+
+
+It’s essential to stay calm and take immediate steps to manage your condition until you can see a doctor. Here are some things you can do:\n
+
+Relax: Try to stay calm and take deep breaths. Stress can increase blood pressure.\n
+
+
+Avoid Stimulants: Stay away from caffeine, nicotine, and alcohol, as these can raise your blood pressure.\n
+
+Stay Hydrated: Drink plenty of water to help maintain healthy blood pressure levels.\n
+
+Monitor Your Blood Pressure: If you have a blood pressure monitor, keep track of your readings.\n
+
+Eat Healthily: Focus on fruits, vegetables, and low-sodium foods. Avoid processed foods and excess salt.\n
+
+Rest: Take breaks and avoid heavy physical activity.\n
+
+Seek Medical Attention if Necessary: If you experience symptoms like chest pain, severe headache, dizziness, or shortness of breath, seek immediate medical help.
+
+"""   
+def stream_data():
+    for word in start_text.split(" "):
+        yield word + " "
+        time.sleep(0.02)
+
+    if result==1:
+        for word in end_text.split(" "):
+            yield word + " "
+            time.sleep(0.02)
+
 
 if submit_button:
-    result = model.predict(df)
-    st.write(df.head())
-    if result == 0:
-        st.success("✅ The patient is not at risk of stroke.")
-        st.image("https://astrologer.swayamvaralaya.com/wp-content/uploads/2012/08/health1.jpg", width=600)
-    else:
-        st.error("⚠️ The patient is at risk of stroke!")
-        st.image("https://media.mehrnews.com/d/2018/11/05/4/2947868.jpg", width=600)
-    st.write("")
+    st.write_stream(stream_data)
+    
+# if submit_button:
+#     result = model.predict(df)
+#     st.write(df.head())
+#     if result == 0:
+#         st.success("✅ The patient is not at risk of stroke.")
+#         st.image("https://astrologer.swayamvaralaya.com/wp-content/uploads/2012/08/health1.jpg", width=600)
+#     else:
+#         st.error("⚠️ The patient is at risk of stroke!")
+#         st.image("https://media.mehrnews.com/d/2018/11/05/4/2947868.jpg", width=600)
+#     st.write("")
 
 
 st.sidebar.header(" stroke visualizations")
