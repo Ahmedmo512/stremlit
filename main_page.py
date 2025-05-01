@@ -168,8 +168,8 @@ def stream_data():
 if st.button('gasdgajks'):
     st.write(stream_data)
 
-''''if submit_button:
-    st.write_stream(stream_data)''''
+'''if submit_button:
+    st.write_stream(stream_data)'''
     
 # if submit_button:
 #     result = model.predict(df)
