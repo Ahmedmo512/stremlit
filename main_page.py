@@ -66,7 +66,7 @@ with st.form(key='prediction_form'):
     with col6:
         age = st.slider("Select Age", min_value=1, max_value=100, step=1, value=50)
     with col7:
-        bmi = st.slider("Select BMI", min_value=10, max_value=50, step=1, value=30)
+        bmi = st.slider("Select BMI", min_value=10, max_value=35, step=1, value=20)
     with col8:
         avg_glucose_level = st.slider("Select Avg Glucose Level", min_value=50, max_value=270, step=1, value=150)
 
@@ -153,27 +153,47 @@ Rest: Take breaks and avoid heavy physical activity.\n
 
 Seek Medical Attention if Necessary: If you experience symptoms like chest pain, severe headache, dizziness, or shortness of breath, seek immediate medical help.
 
-"""   
-def stream_data():
-    for word in start_text.split(" "):
+"""  
+def stream_data(text):
+    for word in text.split(" "):
         yield word + " "
         time.sleep(0.02)
+if submit_button:
+    # عرض النص التمهيدي تدريجياً
+    st.write_stream(stream_data(start_text))
 
+    # عرض النتيجة والصورة
     if result == 1:
         st.error(f"⚠️ The patient is at risk of stroke! with {perc}")
         st.image("https://media.mehrnews.com/d/2018/11/05/4/2947868.jpg", width=600)
 
-        # ✅ طباعة end_text بعد عرض الصورة
-        for word in end_text.split(" "):
-            yield word + " "
-            time.sleep(0.02)
-
+        # عرض النص التحذيري بعد الصورة
+        st.write_stream(stream_data(end_text))
     else:
         st.success(f"✅ The patient is not at risk of stroke. with {perc}")
         st.image("https://astrologer.swayamvaralaya.com/wp-content/uploads/2012/08/health1.jpg", width=600)
 
-if submit_button:
-    st.write_stream(stream_data)
+
+# def stream_data():
+#     for word in start_text.split(" "):
+#         yield word + " "
+#         time.sleep(0.02)
+
+#     if result == 1:
+#         st.error(f"⚠️ The patient is at risk of stroke! with {perc}")
+#         st.image("https://media.mehrnews.com/d/2018/11/05/4/2947868.jpg", width=600)
+
+#         # ✅ طباعة end_text بعد عرض الصورة
+#         for word in end_text.split(" "):
+#             yield word + " "
+#             time.sleep(0.02)
+
+#     else:
+#         st.success(f"✅ The patient is not at risk of stroke. with {perc}")
+#         st.image("https://astrologer.swayamvaralaya.com/wp-content/uploads/2012/08/health1.jpg", width=600)
+
+# if submit_button:
+#     st.write_stream(stream_data)
 
 
 
