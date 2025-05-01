@@ -168,7 +168,7 @@ def stream_data():
         
         for word in end_text.split(" "):
             yield word + " "
-            time.sleep(0.02)
+            time.sleep(0.8)
 
     else:
         st.success(f"✅ The patient is not at risk of stroke. with {perc}")
