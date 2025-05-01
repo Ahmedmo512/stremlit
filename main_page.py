@@ -154,25 +154,27 @@ Rest: Take breaks and avoid heavy physical activity.\n
 Seek Medical Attention if Necessary: If you experience symptoms like chest pain, severe headache, dizziness, or shortness of breath, seek immediate medical help.
 
 """   
-def stream_data(text):
-    for word in text.split(" "):
+def stream_data():
+    for word in start_text.split(" "):
         yield word + " "
         time.sleep(0.02)
 
-if submit_button:
-    # عرض النص التمهيدي تدريجياً
-    st.write_stream(stream_data(start_text))
-
-    # عرض النتيجة والصورة
     if result == 1:
         st.error(f"⚠️ The patient is at risk of stroke! with {perc}")
         st.image("https://media.mehrnews.com/d/2018/11/05/4/2947868.jpg", width=600)
 
-        # عرض النص التحذيري بعد الصورة
-        st.write_stream(stream_data(end_text))
+        # ✅ طباعة end_text بعد عرض الصورة
+        for word in end_text.split(" "):
+            yield word + " "
+            time.sleep(0.02)
+
     else:
         st.success(f"✅ The patient is not at risk of stroke. with {perc}")
         st.image("https://astrologer.swayamvaralaya.com/wp-content/uploads/2012/08/health1.jpg", width=600)
+
+if submit_button:
+    st.write_stream(stream_data)
+
 
 
 
