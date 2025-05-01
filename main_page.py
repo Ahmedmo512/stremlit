@@ -159,10 +159,17 @@ def stream_data():
         yield word + " "
         time.sleep(0.02)
 
-    if result==1:
+    # ✅ إضافة الصورة بناءً على النتيجة
+    if result == 1:
+        st.image("https://media.mehrnews.com/d/2018/11/05/4/2947868.jpg", width=600)
+    else:
+        st.image("https://astrologer.swayamvaralaya.com/wp-content/uploads/2012/08/health1.jpg", width=600)
+
+    if result == 1:
         for word in end_text.split(" "):
             yield word + " "
             time.sleep(0.02)
+
 
 
 
