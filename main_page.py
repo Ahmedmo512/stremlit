@@ -161,11 +161,12 @@ def stream_data():
 
     if result == 1:
         st.error(f"⚠️ The patient is at risk of stroke! with {perc}")
-        
-       
         st.image("https://media.mehrnews.com/d/2018/11/05/4/2947868.jpg", width=600)
 
-        
+        # ✅ طباعة end_text بعد عرض الصورة
+        for word in end_text.split(" "):
+            yield word + " "
+            time.sleep(0.02)
 
     else:
         st.success(f"✅ The patient is not at risk of stroke. with {perc}")
@@ -178,12 +179,10 @@ def stream_data():
 
 
 
+
 if submit_button:
     st.write_stream(stream_data)
-    if result == 1:
-            for word in end_text.split(" "):
-            yield word + " "
-            time.sleep(0.02)
+ 
     
 # if submit_button:
 #     result = model.predict(df)
