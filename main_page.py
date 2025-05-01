@@ -123,8 +123,7 @@ if result ==1:
    text_result= "⚠️ The patient is at risk of stroke!"
 else:
     text_result="✅ The patient is not at risk of stroke."
- start_text = """
-This is just an expectation
+ start_text = f""" This is just an expectation
  from a program and not sure 
  please check with your doctor
 but this program expects that
