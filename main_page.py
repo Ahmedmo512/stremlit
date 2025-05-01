@@ -158,17 +158,18 @@ def stream_data(text):
     for word in text.split(" "):
         yield word + " "
         time.sleep(0.02)
+
 if submit_button:
-    # عرض النص التمهيدي أولاً
-    st.write_stream(lambda: stream_data(start_text))
-    
+    # عرض النص التمهيدي تدريجياً
+    st.write_stream(stream_data(start_text))
+
     # عرض النتيجة والصورة
     if result == 1:
         st.error(f"⚠️ The patient is at risk of stroke! with {perc}")
         st.image("https://media.mehrnews.com/d/2018/11/05/4/2947868.jpg", width=600)
-        
-        # عرض النص التحذيري
-        st.write_stream(lambda: stream_data(end_text))
+
+        # عرض النص التحذيري بعد الصورة
+        st.write_stream(stream_data(end_text))
     else:
         st.success(f"✅ The patient is not at risk of stroke. with {perc}")
         st.image("https://astrologer.swayamvaralaya.com/wp-content/uploads/2012/08/health1.jpg", width=600)
@@ -182,8 +183,9 @@ if submit_button:
 
 
 
-if submit_button:
-    st.write_stream(stream_data)
+
+# if submit_button:
+#     st.write_stream(stream_data)
  
     
 # if submit_button:
