@@ -128,7 +128,7 @@ This is just an expectation
 from a program and not sure 
  please check with your doctor
 but this program expects that
-**{text_result}** with **{perc}** We hope that you are always
+We hope that you are always
 in good health \n\n
 
 """
@@ -161,8 +161,10 @@ def stream_data():
 
     # ✅ إضافة الصورة بناءً على النتيجة
     if result == 1:
+        st.error(f"⚠️ The patient is at risk of stroke! with{perc}")
         st.image("https://media.mehrnews.com/d/2018/11/05/4/2947868.jpg", width=600)
     else:
+        st.success(f"✅ The patient is not at risk of stroke. with {perc}")
         st.image("https://astrologer.swayamvaralaya.com/wp-content/uploads/2012/08/health1.jpg", width=600)
 
     if result == 1:
