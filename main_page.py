@@ -163,7 +163,7 @@ def stream_data():
         st.error(f"⚠️ The patient is at risk of stroke! with {perc}")
         st.image("https://media.mehrnews.com/d/2018/11/05/4/2947868.jpg", width=600)
         
-        
+        # ✅ عرض الصورة قبل النص التحذيري
         time.sleep(0.5)  # (اختياري) تأخير بسيط لعرض الصورة أولاً
     
         for word in end_text.split(" "):
@@ -173,6 +173,7 @@ def stream_data():
     else:
         st.success(f"✅ The patient is not at risk of stroke. with {perc}")
         st.image("https://astrologer.swayamvaralaya.com/wp-content/uploads/2012/08/health1.jpg", width=600)
+
 
 
 
