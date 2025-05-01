@@ -35,7 +35,7 @@ accuracy = accuracy_score(y_pred, y_test)
 
 
 with st.form(key='prediction_form'):
-    st.subheader('Select your features')
+    st.subheader('Enter Patient Information')
 
     col1, col2 = st.columns(2)
     with col1:
