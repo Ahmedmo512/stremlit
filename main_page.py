@@ -21,7 +21,7 @@ def load_data(data_location):
     return data
 
 data = load_data(data_location)
-columns_to_drop = [ 'Residence_type']
+columns_to_drop = ['work_type', 'Residence_type']
 data.drop(columns=columns_to_drop, axis=1, inplace=True)
 X = data.drop('stroke', axis=1)  # split features
 y = data['stroke']  # split target
@@ -65,11 +65,7 @@ with st.form(key='prediction_form'):
         st.write("")
         st.write("")
         st.write("")
-        work_type = st.selectbox('work_type', ['Never_worked', 'children', 'Goverment job', 'Self employed', 'Private'])
-        st.write("")
-        st.write("")
-        st.write("")
-        st.write("")
+
     col6, col7, col8 = st.columns(3)
     with col6:
         age = st.slider("Select Age", min_value=1, max_value=100, step=1, value=50)
@@ -87,7 +83,6 @@ df = pd.DataFrame({
     'hypertension': [hypertension],
     'heart_disease': [heart_disease],
     'ever_married': [ever_married],
-    'work_type':[work_type],
     'avg_glucose_level': [avg_glucose_level],
     'bmi': [bmi],
     'smoking_status': [smoking_status]
@@ -107,17 +102,7 @@ def transform_hypertension(df):
 
 def transform_heart_disease(df):
     return 1 if df['heart_disease'] == 'Ever had heart_disease' else 0     
-def transform_work_type(df):
-    if df['work_type']=='Never_worked':
-        return 0
-    elif  df['work_type']=='children':
-        return 1
-    elif  df['work_type']=='Goverment job':
-        return 2 
-    elif  df['work_type']=='Self employed':
-        return 3   
-    else  :
-        return 4    
+ 
         
     
 
@@ -126,7 +111,7 @@ df['ever_married'] = df.apply(transform_ever_married, axis=1)
 df['smoking_status'] = df.apply(transform_smoking_status, axis=1)
 df['hypertension'] = df.apply(transform_hypertension, axis=1)
 df['heart_disease'] = df.apply(transform_heart_disease, axis=1)
-df['work_type']=df.apply(transform_work_type,axis=1)
+
 
 result=model.predict(df)
 
