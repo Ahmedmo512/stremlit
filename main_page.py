@@ -185,13 +185,13 @@ if submit_button:
 
     # عرض النتيجة والصورة
     if result == 1:
-        st.error(f"⚠️ The patient is at risk of stroke! ")
+        st.error(f"⚠️ The patient is at risk of stroke!  ")
         st.image("https://media.mehrnews.com/d/2018/11/05/4/2947868.jpg", width=600)
 
         # عرض النص التحذيري بعد الصورة
         st.write_stream(stream_data(end_text))
     else:
-        st.success(f"✅ The patient is not at risk of stroke. ")
+        st.success(f"✅ The patient is not at risk of stroke.  ")
         st.image("https://astrologer.swayamvaralaya.com/wp-content/uploads/2012/08/health1.jpg", width=600)
 
 
