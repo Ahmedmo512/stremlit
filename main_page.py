@@ -35,7 +35,7 @@ accuracy = accuracy_score(y_pred, y_test)
 
 
 with st.form(key='prediction_form'):
-    st.subheader('Enter Patient Information')
+    st.subheader('Enter Patient Information 🧑‍⚕️📋📝💊')
 
     col1, col2 = st.columns(2)
     with col1:
@@ -298,9 +298,9 @@ def get_fig_age(data):
     return fig
 
 risk_factor = st.sidebar.selectbox('Select Risk Factor', ['avg_glucose_level',"BMI",'Hypertension', 'Heart Disease','Age'])
-con = st.sidebar.button('Confirm')
+# con = st.sidebar.button('Confirm')
 
-if con:
+if risk_factor:
     if risk_factor == 'Hypertension':
         st.plotly_chart(get_fig_hypertension(data), use_container_width=True)
         st.write("The line show a positive correlation. As hypertension increases, the probability of having a stroke also increases")
