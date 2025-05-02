@@ -297,10 +297,10 @@ def get_fig_age(data):
     plt.tight_layout()
     return fig
 
-risk_factor = st.sidebar.selectbox('Select Risk Factor', ['avg_glucose_level',"BMI",'Hypertension', 'Heart Disease','Age'])
+risk_factors = st.sidebar.selectbox('Select Risk Factor', ['avg_glucose_level',"BMI",'Hypertension', 'Heart Disease','Age'])
 # con = st.sidebar.button('Confirm')
 
-if risk_factor:
+if risk_factors :
     if risk_factor == 'Hypertension':
         st.plotly_chart(get_fig_hypertension(data), use_container_width=True)
         st.write("The line show a positive correlation. As hypertension increases, the probability of having a stroke also increases")
