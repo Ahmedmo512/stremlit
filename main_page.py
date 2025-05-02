@@ -114,9 +114,9 @@ def transform_work_type(df):
         return 1
     elif  df['work_type']=='Goverment job':
         return 2 
-     elif  df['work_type']=='Self employed':
+    elif  df['work_type']=='Self employed':
         return 3   
-     else  :
+    else  :
         return 4    
         
     
