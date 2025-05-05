@@ -286,7 +286,7 @@ risk_factors = st.sidebar.selectbox('Select Risk Factor', ['avg_glucose_level',"
 con = st.sidebar.button('Confirm 🆗')
 
 if con :
-    if risk_factor == 'Hypertension':
+    if risk_factors == 'Hypertension':
         st.plotly_chart(get_fig_hypertension(data), use_container_width=True)
         st.write("The line show a positive correlation. As hypertension increases, the probability of having a stroke also increases")
     elif risk_factor == 'Heart Disease':
