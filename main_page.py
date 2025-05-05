@@ -289,13 +289,13 @@ if con :
     if risk_factors == 'Hypertension':
         st.plotly_chart(get_fig_hypertension(data), use_container_width=True)
         st.write("The line show a positive correlation. As hypertension increases, the probability of having a stroke also increases")
-    elif risk_factor == 'Heart Disease':
+    elif risk_factors == 'Heart Disease':
         st.plotly_chart(get_fig_heart_disease(data), use_container_width=True)
         st.write("The line show a positive correlation. As heart_disease increases, the probability of having a stroke also increases")
-    elif risk_factor == 'BMI':
+    elif risk_factors == 'BMI':
         st.plotly_chart(get_fig_BMI(data), use_container_width=True)
         st.write("The line show a positive correlation. As BMI increases, the probability of having a stroke A slight increases")
-    elif risk_factor =='Age':
+    elif risk_factors =='Age':
         st.pyplot(get_fig_age(data))
         st.write("Stroke cases (stroke=1, orange) are more prevalent in middle-aged and older individuals (40+ years), aligning with known medical research that stroke risks increase with age. The density plot further confirms that stroke cases (stroke=1) peak around 50 to 70 years, This suggests that stroke is more common in older populations compared to younger individuals.")
     else:
